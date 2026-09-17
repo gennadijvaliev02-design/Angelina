@@ -29,8 +29,8 @@
         <p class="lead">Тренировки, питание и нагрузка под твою реальную жизнь — без жёстких ограничений, шаблонов и бессмысленной гонки за усталостью.</p>
         <div class="hero-actions">
           <button class="btn btn-dark js-booking-open" type="button">Записаться онлайн</button>
-          <a class="text-link social-link" href="https://t.me/sopeachys" target="_blank" rel="noopener">Написать в Telegram <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
-          <a class="text-link social-link" href="https://wa.me/79288274080" target="_blank" rel="noopener">WhatsApp <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+          <a class="text-link social-link" href="https://t.me/sopeachys" target="_blank" rel="noopener">Написать в Telegram <svg class="brand-icon telegram-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.2 4.2 18 19.3c-.24 1.07-.88 1.33-1.78.83l-4.87-3.59-2.35 2.26c-.26.26-.48.48-.98.48l.35-4.96 9.03-8.16c.39-.35-.09-.55-.61-.2L5.63 13l-4.8-1.5c-1.04-.33-1.06-1.04.22-1.54L19.82 2.7c.87-.32 1.63.21 1.38 1.5Z"/></svg></a>
+          <a class="text-link social-link" href="https://wa.me/79288274080" target="_blank" rel="noopener">WhatsApp <svg class="brand-icon whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.01c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.3-6.2-3.6-8.4Zm-8.2 18.2h-.01a9.8 9.8 0 0 1-5-1.4l-.36-.21-3.86 1.01 1.03-3.76-.24-.38a9.8 9.8 0 1 1 8.44 4.74Zm5.4-7.3c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.08-.3-.15-1.25-.46-2.38-1.47a8.9 8.9 0 0 1-1.65-2.05c-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35Z"/></svg></a>
         </div>
         <div class="hero-proof">
           <div><strong>3+</strong><span>лет собственного<br>тренировочного опыта</span></div>
@@ -161,6 +161,12 @@
   </main>
 
   <footer><a class="brand" href="#top">ANGELINA <span>FIT</span></a><span>Персональный тренер</span><span>© 2026</span></footer>
+
+  <button class="floating-booking js-booking-open" type="button" aria-label="Записаться онлайн">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v3M17 2v3M3.5 9h17M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>
+    <span>Записаться онлайн</span>
+  </button>
+
   <div class="booking-modal" id="bookingModal" aria-hidden="true">
     <div class="booking-backdrop" data-booking-close></div>
     <div class="booking-dialog" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
