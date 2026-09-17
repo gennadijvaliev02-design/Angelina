@@ -75,3 +75,31 @@ body.modal-open .floating-booking{opacity:0;pointer-events:none}
   }
   .floating-booking:hover{transform:translateX(-50%) translateY(-2px)}
 }
+
+
+/* v5.1 — social brand colors + filled lifestyle grid */
+.telegram-brand{color:#229ED9}
+.whatsapp-brand{color:#25D366}
+.telegram-brand:hover{color:#1688c8}
+.whatsapp-brand:hover{color:#1fb357}
+.telegram-button{
+  background:#229ED9;
+  border-color:#229ED9;
+  color:#fff;
+}
+.whatsapp-button{
+  background:#25D366;
+  border-color:#25D366;
+  color:#fff;
+}
+.telegram-button:hover{background:#1688c8;border-color:#1688c8}
+.whatsapp-button:hover{background:#1fb357;border-color:#1fb357}
+.life-d{grid-column:2;grid-row:2}
+@media(max-width:900px){
+  .lifestyle-grid{grid-template-rows:480px 300px 300px 320px}
+  .life-d{grid-column:1/3;grid-row:4}
+}
+@media(max-width:560px){
+  .lifestyle-grid{grid-template-rows:500px 340px auto 420px 380px}
+  .life-d{grid-column:1;grid-row:5}
+}
