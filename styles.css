@@ -175,3 +175,12 @@ body.modal-open .floating-booking{opacity:0;pointer-events:none}
   .hero-card{height:auto;min-height:0}
   .hero-card img{height:auto;max-height:none}
 }
+
+
+/* v7 — all key photos shown fully without cropping */
+.lifestyle-grid img,
+.training-grid img{
+  object-fit:contain!important;
+  object-position:center center!important;
+  background:#e8ded5;
+}
