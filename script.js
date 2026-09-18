@@ -3,10 +3,12 @@ const nav=document.querySelector('.nav');
 menuBtn?.addEventListener('click',()=>{
   const open=nav?.classList.toggle('open');
   menuBtn.setAttribute('aria-expanded',String(!!open));
+  menuBtn.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');
 });
 nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   nav.classList.remove('open');
   menuBtn?.setAttribute('aria-expanded','false');
+  menuBtn?.setAttribute('aria-label','Открыть меню');
 }));
 
 const revealEls=[...document.querySelectorAll('.reveal')];
@@ -24,23 +26,35 @@ if('IntersectionObserver' in window){
   revealEls.forEach(el=>el.classList.add('visible'));
 }
 
-// Transformation carousel: width-based math, autoplay + swipe + arrows.
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape' && nav?.classList.contains('open')){
+    nav.classList.remove('open');
+    menuBtn?.setAttribute('aria-expanded','false');
+    menuBtn?.setAttribute('aria-label','Открыть меню');
+    menuBtn?.focus();
+  }
+});
+
+// Transformation carousel: swipe, arrows and accessible pagination.
 const carousel=document.getElementById('transformCarousel');
 const slides=[...(carousel?.querySelectorAll('.transform-slide')||[])];
 const dotsRoot=document.getElementById('transformDots');
-let slideIndex=0,autoTimer=null,userPauseTimer=null,scrollRaf=null;
+let slideIndex=0,scrollRaf=null;
 
 function carouselWidth(){return carousel?.clientWidth||0}
 function paintDots(){
   if(!dotsRoot)return;
-  [...dotsRoot.children].forEach((d,i)=>d.classList.toggle('active',i===slideIndex));
+  [...dotsRoot.children].forEach((d,i)=>{
+    d.classList.toggle('active',i===slideIndex);
+    d.setAttribute('aria-current',String(i===slideIndex));
+  });
 }
 function goToSlide(index,behavior='smooth'){
   if(!carousel||!slides.length)return;
   slideIndex=(index+slides.length)%slides.length;
   const width=carouselWidth();
   if(!width)return;
-  carousel.scrollTo({left:Math.round(width*slideIndex),behavior});
+  carousel.scrollTo({left:Math.round(width*slideIndex),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':behavior});
   paintDots();
 }
 slides.forEach((_,i)=>{
@@ -48,23 +62,12 @@ slides.forEach((_,i)=>{
   d.className='carousel-dot'+(i===0?' active':'');
   d.type='button';
   d.setAttribute('aria-label',`Трансформация ${i+1}`);
-  d.addEventListener('click',()=>{pauseAutoplay();goToSlide(i)});
+  d.addEventListener('click',()=>{goToSlide(i)});
   dotsRoot?.appendChild(d);
 });
-document.querySelector('.carousel-btn.prev')?.addEventListener('click',()=>{pauseAutoplay();goToSlide(slideIndex-1)});
-document.querySelector('.carousel-btn.next')?.addEventListener('click',()=>{pauseAutoplay();goToSlide(slideIndex+1)});
+document.querySelector('.carousel-btn.prev')?.addEventListener('click',()=>{goToSlide(slideIndex-1)});
+document.querySelector('.carousel-btn.next')?.addEventListener('click',()=>{goToSlide(slideIndex+1)});
 
-function startAutoplay(){
-  clearInterval(autoTimer);
-  autoTimer=setInterval(()=>goToSlide(slideIndex+1),5500);
-}
-function pauseAutoplay(){
-  clearInterval(autoTimer);
-  clearTimeout(userPauseTimer);
-  userPauseTimer=setTimeout(startAutoplay,9000);
-}
-carousel?.addEventListener('pointerdown',pauseAutoplay,{passive:true});
-carousel?.addEventListener('touchstart',pauseAutoplay,{passive:true});
 carousel?.addEventListener('scroll',()=>{
   if(!carousel||!slides.length)return;
   if(scrollRaf)cancelAnimationFrame(scrollRaf);
@@ -76,4 +79,4 @@ carousel?.addEventListener('scroll',()=>{
   });
 },{passive:true});
 window.addEventListener('resize',()=>requestAnimationFrame(()=>goToSlide(slideIndex,'auto')));
-startAutoplay();
+paintDots();
