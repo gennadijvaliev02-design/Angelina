@@ -184,3 +184,34 @@ body.modal-open .floating-booking{opacity:0;pointer-events:none}
   object-position:center center!important;
   background:#e8ded5;
 }
+
+
+/* v8 — unique training photos, full image display */
+.training-grid{
+  margin-top:58px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  align-items:start;
+}
+.training-grid .tr-card{
+  margin:0;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.training-grid .tr-card img{
+  display:block;
+  width:100%;
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  background:#2b1d17;
+}
+.training-grid .tr-card figcaption{display:none}
+@media(max-width:900px){
+  .training-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:560px){
+  .training-grid{grid-template-columns:1fr;}
+}
